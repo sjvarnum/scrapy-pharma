@@ -21,13 +21,14 @@ class Law360Spider(scrapy.Spider):
 
     custom_settings = {
         'DOWNLOAD_DELAY':
-        1,
+        2,
         'AUTOTHROTTLE_ENABLED':
         True,
         'AUTOTHROTTLE_DEBUG':
         True,
         'USER_AGENT':
         'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+        'COOKIES_ENABLED': False,
     }
 
     DOWNLOADER_MIDDLEWARES = {
