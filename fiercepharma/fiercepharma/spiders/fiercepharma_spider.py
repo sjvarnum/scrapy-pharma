@@ -32,7 +32,8 @@ class FiercePharmaSpider(scrapy.Spider):
         for article in data:
             yield {
                 'date': article['publishedDate'].split('T')[0],
-                'source': article['primaryTaxonomy']['label'],
+                'source': 'fiercepharma',
+                'channel': article['primaryTaxonomy']['label'],
                 'title': article['title'],
                 'link': article['uri']
             }
