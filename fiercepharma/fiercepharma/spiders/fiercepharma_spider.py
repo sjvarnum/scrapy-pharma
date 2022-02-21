@@ -31,13 +31,14 @@ class FiercePharmaSpider(scrapy.Spider):
 
         for article in data:
             yield {
-                'Date': article['publishedDate'].split('T')[0],
-                'Source': article['primaryTaxonomy']['label'],
-                'Title': article['title'],
-                'Link': article['uri']
+                'date': article['publishedDate'].split('T')[0],
+                'source': 'fiercepharma',
+                'channel': article['primaryTaxonomy']['label'],
+                'title': article['title'],
+                'link': article['uri']
             }
 
-        page_count = round((total_count/100)+1)
+        page_count = round((total_count/100))
         for x in range(1, page_count):
             yield(scrapy.Request(f'https://www.fiercepharma.com/api/v1/fronts/node?_format=json&page={x}&sectionId=33231&heroArticleCount=5&sponsoredCount=0&limit=100',
                                  callback=self.parse))
